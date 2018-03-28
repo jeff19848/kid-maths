@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="script.js"></script>
+<style>
+input{
+	margin:10px 0;
+	padding:10px;
+}
+
+.question {
+	width:50px;
+}
+.maths{
+  width:30px;
+
+}
+
+.show{
+display:inline;
+width:200px;
+padding:10px;
+border:0;
+background-color:#add8e6;
+cursor:pointer;
+}
+.show:hover{
+	background: #9bc2cf;
+	color: #fff;
+}
+.hide{
+display:none;
+}
+.result{
+  padding:3px 0;
+
+}
+.error{
+	color:red;
+}
+.main{
+width: 600px;
+
+  
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+    text-align: center;
+}
+.correct{
+color:#78AB46;
+}
+.incorrect{
+color:red;
+}
+</style>
+</head>
+<body>
+
+<div class="main" ng-app="mainApp" ng-controller="app">
+	<h1>Maths Test (+)</h1>
+<input type="text" class="question" ng-model="txtCreateMaths" />
+<button type="button" class="show" ng-click="generateQuestion()">Generate Question</button>
+
+<div ng-repeat="i in maths">
+<input type="text" class="maths" value="{{i.num1}}">
+<label>{{ i.symbol }}</label>
+<input type="text" class="maths" value="{{ i.num2 }}">
+<label>=</label>
+<input type="text" class="maths" ng-model="i.answer" />
+
+</div> 
+<button class="{{maths.length>0?'show':'hide'}}"type="button" ng-click="submitForm()">Submit</button>
+<p class="error">{{message}}</p>
+<div class="result" ng-repeat="i in result">
+<p class="{{ i.answer=='correct'?'correct':'incorrect'}}"">{{i.results}}</p>
+</div>
+</div> 
+</body>
+</html>
